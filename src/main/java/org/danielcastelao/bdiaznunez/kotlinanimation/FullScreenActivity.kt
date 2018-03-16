@@ -22,7 +22,6 @@ class FullScreenActivity : AppCompatActivity() {
     private val uiContext: CoroutineContext = UI
     private val bgContext: CoroutineContext = CommonPool
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_full_screen)
@@ -30,6 +29,12 @@ class FullScreenActivity : AppCompatActivity() {
         val activity2 = Intent(this, FullScreenActivity2::class.java)
 
         val numero : Int = valorRandom(1..3)
+
+        btnNewGame.setOnClickListener {
+
+            esconderBola()
+
+        }
 
         vaso1.setOnClickListener {
 
@@ -39,8 +44,6 @@ class FullScreenActivity : AppCompatActivity() {
             startActivity(activity2)
             }
         }
-
-
 
         // evento click en el vaso2
 
@@ -65,15 +68,64 @@ class FullScreenActivity : AppCompatActivity() {
 
     }
 
-    // factor de escala
-
-    var k = 0.5
-
     // para cambiar los sentidos de las animaciones
 
     var j : Int = 1
 
     // tarea en segundo plano del vaso3
+
+
+    private fun esconderBola() = launch(uiContext){
+
+        // aumentamos o disminuimos alternadamente
+
+        j *= 1
+
+        // animacion: escalamos en la direccion X
+
+        val objectAnimator1 = ObjectAnimator.ofFloat(
+
+                vaso1,
+
+                "translationY",
+
+                1000f * j)
+
+        objectAnimator1.duration = 500L
+
+        objectAnimator1.interpolator
+
+        objectAnimator1.start()
+
+        val objectAnimator2 = ObjectAnimator.ofFloat(
+
+                vaso2,
+
+                "translationY",
+
+                1000f * j)
+
+        objectAnimator2.duration = 500L
+
+        objectAnimator2.interpolator
+
+        objectAnimator2.start()
+
+        val objectAnimator3 = ObjectAnimator.ofFloat(
+
+                vaso3,
+
+                "translationY",
+
+                1000f * j)
+
+        objectAnimator3.duration = 500L
+
+        objectAnimator3.interpolator
+
+        objectAnimator3.start()
+
+    }
 
     private fun valorRandom(valores: IntRange) : Int {
         var r = Random()
@@ -85,7 +137,7 @@ class FullScreenActivity : AppCompatActivity() {
 
         // aumentamos o disminuimos alternadamente
 
-        if (k == 1.5) k = 0.5 else k = 1.5
+        j *= -1
 
         // animacion: escalamos en la direccion X
 
@@ -93,9 +145,9 @@ class FullScreenActivity : AppCompatActivity() {
 
                 vaso3,
 
-                "scaleX",
+                "translationX",
 
-                k.toFloat())
+                 100f * j)
 
         objectAnimator.duration = 1000L
 
@@ -145,11 +197,11 @@ class FullScreenActivity : AppCompatActivity() {
 
                 vaso1,
 
-                "translationY",
+                "translationX",
 
-                300f * j)
+                100f * j)
 
-        objectAnimator.duration = 5000L
+        //objectAnimator.duration = 3000L
 
         objectAnimator.interpolator
 
