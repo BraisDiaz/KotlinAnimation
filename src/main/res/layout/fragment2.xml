@@ -22,40 +22,19 @@
 
         android:layout_height="wrap_content"
 
+        android:layout_marginTop="212dp"
+
         android:gravity="center_horizontal"
 
-        android:text="Fragment2"
+        android:text="QUE MALA PATA, SIGUE PROBANDO"
 
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
 
         app:layout_constraintEnd_toEndOf="parent"
 
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent" />
 
-
-
-    <EditText
-
-        android:id="@+id/editTextFragment2"
-
-        android:layout_width="161dp"
-
-        android:layout_height="wrap_content"
-
-        android:hint="Introduzca clave"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintHorizontal_bias="0.5"
-
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/textViewFragment2"
-
-        app:layout_constraintVertical_bias="0.75" />
 
 </android.support.constraint.ConstraintLayout>

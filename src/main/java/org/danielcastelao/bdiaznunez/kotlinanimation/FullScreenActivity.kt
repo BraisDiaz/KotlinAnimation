@@ -21,6 +21,7 @@ class FullScreenActivity : AppCompatActivity() {
 
     private val uiContext: CoroutineContext = UI
     private val bgContext: CoroutineContext = CommonPool
+    val numero : Int = valorRandom(1..3)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +29,12 @@ class FullScreenActivity : AppCompatActivity() {
 
         val activity2 = Intent(this, FullScreenActivity2::class.java)
 
-        val numero : Int = valorRandom(1..3)
-
         btnNewGame.setOnClickListener {
 
             esconderBola()
+            moverBola()
 
+            print("Escoja un vaso donde crea que está la bola")
         }
 
         vaso1.setOnClickListener {
@@ -72,8 +73,31 @@ class FullScreenActivity : AppCompatActivity() {
 
     var j : Int = 1
 
-    // tarea en segundo plano del vaso3
 
+
+
+    private fun moverBola() = launch(uiContext){
+
+        j *= 1
+
+        val objectAnimator = ObjectAnimator.ofFloat(
+
+                bola,
+                "translationX",
+                if(numero == 1){
+                    200f * j
+                }else if (numero == 2){
+                    1f * j
+                }else{
+                    200f * -j
+                }
+
+        )
+
+
+    }
+
+    //tarea en segundo plano de los 3 vasos.
 
     private fun esconderBola() = launch(uiContext){
 
@@ -81,7 +105,7 @@ class FullScreenActivity : AppCompatActivity() {
 
         j *= 1
 
-        // animacion: escalamos en la direccion X
+        // animacion: escalamos en la direccion Y
 
         val objectAnimator1 = ObjectAnimator.ofFloat(
 
@@ -89,9 +113,9 @@ class FullScreenActivity : AppCompatActivity() {
 
                 "translationY",
 
-                1000f * j)
+                400f * j)
 
-        objectAnimator1.duration = 500L
+        objectAnimator1.duration = 1000L
 
         objectAnimator1.interpolator
 
@@ -103,9 +127,9 @@ class FullScreenActivity : AppCompatActivity() {
 
                 "translationY",
 
-                1000f * j)
+                425f * j)
 
-        objectAnimator2.duration = 500L
+        objectAnimator2.duration = 1000L
 
         objectAnimator2.interpolator
 
@@ -117,9 +141,9 @@ class FullScreenActivity : AppCompatActivity() {
 
                 "translationY",
 
-                1000f * j)
+                425f * j)
 
-        objectAnimator3.duration = 500L
+        objectAnimator3.duration = 1000L
 
         objectAnimator3.interpolator
 
@@ -127,11 +151,16 @@ class FullScreenActivity : AppCompatActivity() {
 
     }
 
+    //Genera un número aleatorio.
+
     private fun valorRandom(valores: IntRange) : Int {
         var r = Random()
         var valorRandom = r.nextInt(valores.last - valores.first) + valores.first
         return valorRandom
     }
+
+
+    // tarea en segundo plano del vaso3
 
     private fun animarVaso3() = launch(uiContext) {
 
@@ -147,7 +176,7 @@ class FullScreenActivity : AppCompatActivity() {
 
                 "translationX",
 
-                 100f * j)
+                 325f * j)
 
         objectAnimator.duration = 1000L
 
@@ -173,9 +202,9 @@ class FullScreenActivity : AppCompatActivity() {
 
                 "translationX",
 
-                100f * j)
+                300f * j)
 
-        objectAnimator.duration = 3000L
+        objectAnimator.duration = 1000L
 
         objectAnimator.interpolator
 
@@ -189,9 +218,9 @@ class FullScreenActivity : AppCompatActivity() {
 
         //arriba o abajo alternadamente
 
-        j *= -1
+        j *= 1
 
-        // animacion: trasladamos en la direccion Y
+        // animacion: trasladamos en la direccion X
 
         val objectAnimator = ObjectAnimator.ofFloat(
 
@@ -199,7 +228,7 @@ class FullScreenActivity : AppCompatActivity() {
 
                 "translationX",
 
-                100f * j)
+                600f * j)
 
         //objectAnimator.duration = 3000L
 

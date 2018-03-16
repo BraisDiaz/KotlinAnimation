@@ -53,8 +53,6 @@ class Fragment2 : Fragment() {
 
         super.onResume()
 
-        editTextFragment2.setText(datos)
-
     }
 
 }

@@ -17,34 +17,15 @@
 
         android:gravity="center_horizontal"
 
-        android:text="Animaciones Animadas S.A"
+        android:text="FELICIDADES, HAS ACERTADO"
 
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
 
         app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintHorizontal_bias="0.5"
-
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-
-        android:id="@+id/textArg"
-
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:text="Estás en el fragment inicial"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
 
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="208dp" />
 
 </android.support.constraint.ConstraintLayout>
